@@ -1,18 +1,19 @@
 ---
 name: summarize-issues
-description: "Summarize Jira issues assigned to the current user and recommend priorities. Use when the user asks to: (1) See what's on their plate, (2) Summarize their assigned work, (3) Prioritize their issues or tasks, (4) Get an overview of their Jira backlog, or (5) Understand what to work on next. Fetches issues from Jira, analyzes by priority/status/due date, and provides actionable prioritization."
+description: "Summarize Jira sprint issues and contributions for the current user. Use when the user asks to: (1) See what's left in the sprint, (2) Summarize their assigned work, (3) Prioritize sprint tasks, (4) See issues they're contributing to, or (5) Understand what to work on next. Focuses on active sprint work first, then shows contributor roles and backlog."
 ---
 
 # Summarize My Jira Issues
 
-Fetch all Jira issues assigned to the current user, summarize the workload, and provide prioritization recommendations.
+Fetch sprint issues assigned to or contributed by the current user, summarize the workload, and provide prioritization recommendations.
 
 ## Workflow
 
 1. **Get user identity** - Identify the current user's Jira account
-2. **Fetch assigned issues** - Query Jira for all open issues assigned to the user
-3. **Analyze workload** - Categorize issues by priority, status, and urgency
-4. **Generate summary** - Present a clear overview with prioritization recommendations
+2. **Fetch sprint issues** - Query active sprint items (assigned + contributing)
+3. **Fetch contributor issues** - Query issues where user is listed as contributor
+4. **Analyze workload** - Categorize by sprint commitment vs contributions
+5. **Generate summary** - Present sprint-focused overview with recommendations
 
 ## Step 1: Get User Identity and Cloud ID
 
@@ -25,189 +26,218 @@ getAccessibleAtlassianResources()
 
 Store the `accountId` from user info and `cloudId` from resources for subsequent queries.
 
-## Step 2: Fetch Assigned Issues
+## Step 2: Fetch Sprint Issues
 
-Query all open issues assigned to the current user using JQL.
+Query issues in open sprints - these are the primary focus.
 
-**Primary query - All open assigned issues:**
+**Primary query - Sprint issues assigned to user:**
 ```
 searchJiraIssuesUsingJql(
     cloudId="[cloudId]",
-    jql='assignee = currentUser() AND status NOT IN (Done, Closed, Resolved) ORDER BY priority DESC, duedate ASC',
-    maxResults=100,
-    fields=["summary", "status", "priority", "issuetype", "duedate", "created", "updated", "project", "labels"],
+    jql='assignee = currentUser() AND sprint in openSprints() AND status NOT IN (Done, Closed, Resolved) ORDER BY priority DESC, status ASC',
+    maxResults=50,
+    fields=["summary", "status", "priority", "issuetype", "duedate", "created", "updated", "project", "labels", "sprint"],
     responseContentFormat="markdown"
 )
 ```
 
-**If pagination needed:** Use `nextPageToken` from results to fetch additional pages.
-
-**Optional - Recently completed (last 7 days):**
+**Sprint issues completed this sprint:**
 ```
 searchJiraIssuesUsingJql(
     cloudId="[cloudId]",
-    jql='assignee = currentUser() AND status IN (Done, Closed, Resolved) AND resolved >= -7d ORDER BY resolved DESC',
+    jql='assignee = currentUser() AND sprint in openSprints() AND status IN (Done, Closed, Resolved) ORDER BY resolved DESC',
     maxResults=20,
     fields=["summary", "status", "priority", "resolved", "project"],
     responseContentFormat="markdown"
 )
 ```
 
-## Step 3: Analyze Workload
+## Step 3: Fetch Contributor Issues
 
-Categorize and analyze the fetched issues.
+Query issues where the user is listed as a contributor (using the "Contributor" or "Contributors" custom field). Run these in parallel with sprint queries.
 
-### Priority Buckets
+**Issues where user is a contributor (not assignee):**
+```
+searchJiraIssuesUsingJql(
+    cloudId="[cloudId]",
+    jql='"Contributor[User Picker (multiple users)]" = currentUser() AND assignee != currentUser() AND status NOT IN (Done, Closed, Resolved) ORDER BY priority DESC, updated DESC',
+    maxResults=30,
+    fields=["summary", "status", "priority", "issuetype", "assignee", "updated", "project", "labels"],
+    responseContentFormat="markdown"
+)
+```
 
-Group issues into action categories:
+**Note:** The contributor field name varies by Jira instance. Common names:
+- `"Contributor[User Picker (multiple users)]"`
+- `"Contributors"`
+- `cf[XXXXX]` (custom field ID)
+
+If the first query fails, try alternate field names or ask the user for their Jira's contributor field name.
+
+## Step 4: Fetch Backlog (Brief)
+
+Only fetch a brief backlog summary - sprint work takes priority.
+
+**Non-sprint assigned issues (brief overview):**
+```
+searchJiraIssuesUsingJql(
+    cloudId="[cloudId]",
+    jql='assignee = currentUser() AND (sprint is EMPTY OR sprint not in openSprints()) AND status NOT IN (Done, Closed, Resolved) ORDER BY priority DESC, updated DESC',
+    maxResults=10,
+    fields=["summary", "status", "priority", "issuetype", "updated", "project"],
+    responseContentFormat="markdown"
+)
+```
+
+## Step 5: Analyze Workload
+
+### Sprint Focus
+
+The primary analysis should be on sprint items:
 
 | Category | Criteria | Action |
 |----------|----------|--------|
-| 🔴 **Urgent** | Highest/High priority OR overdue OR blocked status | Address immediately |
-| 🟡 **This Week** | Medium priority with due dates within 7 days | Plan for this week |
-| 🟢 **Backlog** | Lower priority OR no due date | Schedule when capacity allows |
+| 🔴 **Sprint - In Progress** | Active sprint items being worked on | Complete these first |
+| 🟡 **Sprint - To Do** | Sprint items not yet started | Start after in-progress items |
+| 🟢 **Sprint - Done** | Completed this sprint | Track velocity |
 
-### Workload Metrics
+### Contributor Analysis
 
-Calculate:
-- **Total open issues** - Overall workload size
-- **Issues by status** - In Progress, To Do, Blocked, In Review
-- **Issues by priority** - Highest, High, Medium, Low, Lowest
-- **Overdue count** - Issues past due date
-- **Due this week** - Issues due in next 7 days
+For issues where user is a contributor:
 
-### Red Flags to Identify
+| Category | Criteria | Action |
+|----------|----------|--------|
+| 👥 **Active Contributions** | In Progress items you're helping with | May need your input |
+| 📋 **Pending Contributions** | To Do items you'll contribute to | Be aware of upcoming work |
 
-Flag these patterns:
-- Issues blocked for >3 days
-- High priority issues not started
-- Multiple overdue items
-- Too many items "In Progress" simultaneously (>3 suggests context switching)
+### Backlog (Brief)
 
-## Step 4: Generate Summary
+Only highlight backlog items that are:
+- High priority and may need sprint inclusion
+- Blocked or stale and need attention
+- Quick wins that could be done if sprint work completes early
 
-Present findings using this structure.
+## Step 6: Generate Summary
+
+Present findings using this sprint-focused structure.
 
 ### Summary Output Template
 
 ```markdown
-# Your Jira Workload Summary
+# Sprint Summary
 
-## At a Glance
-- **Total Open Issues:** [count]
-- **In Progress:** [count] | **Blocked:** [count] | **To Do:** [count]
-- **Overdue:** [count] | **Due This Week:** [count]
-
----
-
-## 🔴 Priority 1: Urgent (Address Today)
-
-[List issues that are:
-- Highest/High priority AND in progress or blocked
-- Overdue regardless of priority
-- Explicitly marked as blockers]
-
-| Issue | Summary | Status | Due |
-|-------|---------|--------|-----|
-| PROJ-123 | [summary] | In Progress | Overdue by 2d |
-
-**Why urgent:** [Brief explanation of why these need immediate attention]
+## Sprint Status
+- **Sprint Items Remaining:** [count]
+- **In Progress:** [count] | **To Do:** [count]
+- **Completed This Sprint:** [count]
 
 ---
 
-## 🟡 Priority 2: This Week
+## 🎯 Your Sprint Commitment
 
-[List issues that are:
-- Medium-High priority with due dates within 7 days
-- High priority not yet started]
+### In Progress
+[List sprint items currently being worked on]
 
-| Issue | Summary | Status | Due |
-|-------|---------|--------|-----|
-| PROJ-456 | [summary] | To Do | Mar 20 |
+| Issue | Summary | Status | Updated |
+|-------|---------|--------|---------|
+| PROJ-123 | [summary] | In Progress | Today |
 
-**Recommendation:** [Suggested order or approach]
+### To Do
+[List sprint items not yet started]
 
----
+| Issue | Summary | Priority |
+|-------|---------|----------|
+| PROJ-456 | [summary] | High |
 
-## 🟢 Priority 3: Backlog
-
-[Remaining issues, grouped by project or type if helpful]
-
-| Issue | Summary | Priority | Status |
-|-------|---------|----------|--------|
-| PROJ-789 | [summary] | Medium | To Do |
-
----
-
-## ⚠️ Attention Needed
-
-[Flag any concerning patterns:]
-- **Blocked issues:** [list any blocked items with notes on blockers if available]
-- **Context switching risk:** You have [X] items in progress simultaneously
-- **Aging items:** [Issues not updated in >14 days]
-
----
-
-## ✅ Recently Completed (Last 7 Days)
-
-[Brief list of completed work for context/motivation]
+### ✅ Completed This Sprint
+[Brief list of completed sprint work]
 
 - PROJ-111: [summary]
 - PROJ-222: [summary]
 
 ---
 
+## 👥 Contributing To
+
+Issues where you're listed as a contributor (owned by others):
+
+| Issue | Summary | Owner | Status | Updated |
+|-------|---------|-------|--------|---------|
+| PROJ-789 | [summary] | @owner | In Progress | Yesterday |
+
+**Action needed:** [Note any contributor items that may need your input soon]
+
+---
+
+## 📋 Backlog Highlights
+
+[Only show if relevant - keep brief]
+
+**[count] items in backlog** (not in current sprint)
+
+Notable items:
+- [Any high priority items that might need sprint inclusion]
+- [Any blocked items needing attention]
+
+---
+
 ## Recommended Focus Order
 
-1. **First:** [Most urgent item with reason]
-2. **Then:** [Next priority with reason]
-3. **If time permits:** [Additional items]
+1. **Now:** [Most urgent sprint item]
+2. **Next:** [Second priority]
+3. **Watch:** [Contributor items that may need input]
 ```
 
 ## Tips for Quality Summaries
 
-**Be specific about priorities:**
-- Don't just list by Jira priority - consider due dates and blockers
-- Explain *why* something is urgent (overdue, blocking others, high business impact)
+**Sprint first:**
+- Always lead with sprint commitment
+- Sprint items are the primary deliverables
+- Backlog is secondary context only
 
-**Make it actionable:**
-- Suggest a specific order to tackle work
-- Identify items that can be quick wins
-- Flag items that need clarification or are blocked
+**Contributor awareness:**
+- Highlight contributor items that are "In Progress" - you may be needed
+- Note who owns each contributor issue
+- Flag if contributor items are blocked waiting on you
 
-**Provide context:**
-- Link to Jira issues directly
-- Show status and due dates
-- Mention recently completed work for morale
+**Keep backlog brief:**
+- Only show top 5-10 backlog items
+- Focus on items that might need sprint inclusion
+- Don't overwhelm with full backlog listing
 
-**Adapt to workload size:**
-- For <10 issues: List all individually
-- For 10-30 issues: Group by priority/project
-- For >30 issues: Summarize by category, highlight top 10
+**Adapt to sprint state:**
+- Early sprint: Focus on planning and getting started
+- Mid sprint: Focus on progress and blockers
+- Late sprint: Focus on completion and carryover risk
 
 ## Example Queries
 
-**All blocked issues:**
+**All sprint issues (any status):**
 ```jql
-assignee = currentUser() AND status = Blocked
+assignee = currentUser() AND sprint in openSprints()
 ```
 
-**Overdue issues:**
+**Sprint items at risk (not started, sprint half over):**
 ```jql
-assignee = currentUser() AND duedate < now() AND status NOT IN (Done, Closed, Resolved)
+assignee = currentUser() AND sprint in openSprints() AND status = "To Do"
 ```
 
-**Due this week:**
+**Contributor issues in progress:**
 ```jql
-assignee = currentUser() AND duedate >= startOfWeek() AND duedate <= endOfWeek() AND status NOT IN (Done, Closed, Resolved)
+"Contributor[User Picker (multiple users)]" = currentUser() AND status = "In Progress"
 ```
 
-**High priority not started:**
+**Contributor issues updated recently:**
 ```jql
-assignee = currentUser() AND priority IN (Highest, High) AND status = "To Do"
+"Contributor[User Picker (multiple users)]" = currentUser() AND updated >= -3d
 ```
 
-**Stale issues (not updated in 14 days):**
+**High priority backlog (not in sprint):**
 ```jql
-assignee = currentUser() AND updated < -14d AND status NOT IN (Done, Closed, Resolved)
+assignee = currentUser() AND sprint is EMPTY AND priority IN (Highest, High) AND status NOT IN (Done, Closed, Resolved)
+```
+
+**Backlog items not updated in 30 days:**
+```jql
+assignee = currentUser() AND sprint is EMPTY AND updated < -30d AND status NOT IN (Done, Closed, Resolved)
 ```
