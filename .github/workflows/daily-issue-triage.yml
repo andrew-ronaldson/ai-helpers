@@ -1,0 +1,43 @@
+name: Daily Issue Triage
+
+on:
+  schedule:
+    # 9:00 AM UTC, Monday–Friday
+    - cron: '0 9 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      hours_lookback:
+        description: 'Hours to look back for new issues (default: 24)'
+        required: false
+        default: '24'
+      dry_run:
+        description: 'If true, print assessments but do not post comments'
+        required: false
+        default: 'false'
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests anthropic
+
+      - name: Run issue triage
+        env:
+          GITHUB_TOKEN: ${{ secrets.PF_TRIAGE_GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          HOURS_LOOKBACK: ${{ github.event.inputs.hours_lookback || '24' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: python plugins/pf-workflow/scripts/assess-issues.py
