@@ -30,6 +30,7 @@ Design foundation reference and auditing — tokens, icons, colors, spacing
 |-------|-------------|
 | `css-var-analyzer` | Analyze CSS custom property usage, redefinitions, and naming patterns in PatternFly SCSS components. |
 | `icon-finder` | Find icons from the Red Hat Design System (@rhds/icons) by use case. |
+| `pf-ai-experience-patterns` | Apply Red Hat's AI design language for AI-powered demos and features. |
 | `pf-analyze-modifiers` | Find, list, and summarize PatternFly component modifiers (pf-m- classes) across the codebase. |
 | `pf-class-migration-scanner` | Scans for legacy PatternFly class usage and recommends PF6-safe replacements. |
 | `pf-raw-colors-scan` | Analyze the provided code to find any raw color values assigned to styling properties. |
@@ -74,7 +75,6 @@ React component development — coding standards, testing, and structure
 
 | Skill | Description |
 |-------|-------------|
-| `ai-experience-patterns` | Apply established UI/UX design patterns when building AI-powered product demos and experiences. |
 | `pf-component-structure` | Guide for PatternFly React component structure — audits, correct nesting, and layout debugging. |
 | `pf-import-checker` | Audits and fixes PatternFly import paths, with emphasis on charts, chatbot, and component-groups. |
 | `pf-library-test-writer` | Write unit tests for contributors to PatternFly libraries (patternfly-react, patternfly-chatbot, etc.), not for consumers of PatternFly components. |
