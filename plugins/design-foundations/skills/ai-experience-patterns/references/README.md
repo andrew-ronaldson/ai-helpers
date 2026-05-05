@@ -33,8 +33,8 @@ You can add visual do's/don'ts examples here by:
 
 ## Using these references
 
-The skill automatically references the PDF guidelines. When building AI experiences, Claude will:
-1. Identify which patterns from the PDF apply
+The skill automatically references the Red Hat guidelines. When building AI experiences, the assistant will:
+1. Identify which patterns from the Red Hat apply
 2. Reference specific pages and guidelines
 3. Apply the patterns to the implementation
 4. Document which guidelines were followed

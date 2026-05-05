@@ -11,6 +11,8 @@ Design foundation reference and auditing — tokens, icons, colors, spacing — 
 /plugin marketplace add patternfly/ai-helpers
 
 # Install the plugin
+
+```bash
 /plugin install design-foundations@ai-helpers
 ```
 
