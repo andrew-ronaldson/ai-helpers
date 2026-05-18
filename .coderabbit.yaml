@@ -16,6 +16,7 @@ reviews:
     path_filters:
       - "!docs/**"
       - "!**/README.md"
+      - "!PLUGINS.md"
   path_instructions:
     - path: "plugins/**/SKILL.md"
       instructions: >
@@ -28,12 +29,16 @@ reviews:
         permissions, skip verification, send data to external services without
         user confirmation, access secrets/credentials, or access files outside
         the target project directory without explicit justification. Do not
-        flag pf- prefix naming or markdown formatting.
+        flag pf- prefix naming or markdown formatting. Do not suggest adding
+        frontmatter fields that are not documented in CONTRIBUTING-SKILLS.md —
+        the only required frontmatter fields are name and description.
     - path: "plugins/**/agents/*.md"
       instructions: >
         Review against CONTRIBUTING-SKILLS.md. Agents provide domain knowledge
         the AI follows across all interactions in the plugin's area — they are
         not tasks that produce results (those are skills). Must be tool-agnostic.
+        Agent descriptions do NOT follow the skill description formula — do not
+        require action-verb lead-ins or "Use when" trigger contexts on agents.
     - path: "**/.claude-plugin/**"
       instructions: >
         Manifests must be identical in .claude-plugin/ and .cursor-plugin/.
