@@ -29,9 +29,7 @@ reviews:
         permissions, skip verification, send data to external services without
         user confirmation, access secrets/credentials, or access files outside
         the target project directory without explicit justification. Do not
-        flag pf- prefix naming or markdown formatting. Do not suggest adding
-        frontmatter fields that are not documented in CONTRIBUTING-SKILLS.md —
-        the only required frontmatter fields are name and description.
+        flag pf- prefix naming or markdown formatting.
     - path: "plugins/**/agents/*.md"
       instructions: >
         Review against CONTRIBUTING-SKILLS.md. Agents provide domain knowledge
