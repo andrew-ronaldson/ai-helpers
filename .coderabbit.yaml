@@ -5,8 +5,8 @@ tone_instructions: >
   improvements — must be nitpick comments.
 
 reviews:
-  request_changes_workflow: true
-  profile: "assertive"
+  request_changes_workflow: false
+  profile: "chill"
   high_level_summary: true
   poem: false
   sequence_diagrams: false
@@ -78,9 +78,9 @@ reviews:
 
 knowledge_base:
   web_search:
-    enabled: true
+    enabled: false
   learnings:
-    scope: "auto"
+    scope: "local"
   code_guidelines:
     enabled: true
     filePatterns:
