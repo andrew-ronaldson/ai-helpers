@@ -28,7 +28,7 @@ Code review and quality — PR summaries, adversarial review, security patterns
 
 | Skill | Description |
 |-------|-------------|
-| `summarize-pr-reviews` | Summarize GitHub pull requests awaiting review from the current user. |
+| `summarize-pr-reviews` | Summarize GitHub pull requests awaiting your review with status, age, and priority. |
 
 
 <br>
@@ -39,14 +39,14 @@ Design-to-code translation — Figma review, token auditing, icon identification
 
 | Skill | Description |
 |-------|-------------|
-| `figma-changes` | Identify Figma design changes and generate code update checklists. |
-| `figma-icon-finder` | Identifies PatternFly icons used in Figma mockups and provides the correct import statements for React components. |
-| `icon-finder` | Find icons from the Red Hat Design System (@rhds/icons) by use case. |
-| `pf-ai-experience-patterns` | Apply Red Hat's AI design language for AI-powered demos and features. |
-| `pf-compliance-checker` | Check Figma designs against PatternFly v6 design system standards. |
-| `pf-design-mode` | Create and edit Figma design files using the Figma MCP workflow with PatternFly-approved libraries only. |
-| `pf-raw-colors-scan` | Analyze the provided code to find any raw color values assigned to styling properties. |
-| `pf-token-auditor` | Validate and bridge Figma design styles to PatternFly 6 design tokens. |
+| `figma-changes` | Diff Figma designs to identify what changed and generate code update checklists. |
+| `figma-icon-finder` | Identify PatternFly icons in Figma mockups and provide the correct React import statements. |
+| `icon-finder` | Find Red Hat Design System icons (@rhds/icons) by keyword or use case with visual previews. |
+| `pf-ai-experience-patterns` | Apply Red Hat's AI design language to AI-powered features — chatbots, assistants, generation UIs. |
+| `pf-compliance-checker` | Check Figma designs against PatternFly v6 standards for colors, typography, spacing, and component usage. |
+| `pf-design-mode` | Create and edit Figma design files using PatternFly-approved component libraries. |
+| `pf-raw-colors-scan` | Find raw color values (hex, rgb, hsl) in code and suggest PatternFly design token replacements. |
+| `pf-token-auditor` | Audit designs against the PatternFly 6 token architecture and bridge Figma styles to PF semantic tokens. |
 
 
 <br>
@@ -57,7 +57,7 @@ PF version migration — breaking change detection, class scanning, upgrade plan
 
 | Skill | Description |
 |-------|-------------|
-| `pf-class-migration-scanner` | Scans for legacy PatternFly class usage and recommends PF6-safe replacements. |
+| `pf-class-migration-scanner` | Scan code for legacy PatternFly CSS classes and recommend PF6-safe replacements. |
 
 
 <br>
@@ -68,18 +68,18 @@ PatternFly team tools and skill incubation — issue triage, release management,
 
 | Skill | Description |
 |-------|-------------|
-| `analytics-repo-pruning` | Flags archived or inactive Git repositories listed in PatternFly Analytics repos.json so entries can be pruned. |
-| `css-var-analyzer` | Analyze CSS custom property usage, redefinitions, and naming patterns in PatternFly SCSS components. |
-| `duplicate-epic` | Use when `/duplicate-epic <issue> <feature>` should clone a Jira Epic, Story, or Bug into the PF project, resolve non-epic inputs to their parent epic, link back to the source, and attach the new epic to a PF feature. |
-| `pf-analyze-modifiers` | Find, list, and summarize PatternFly component modifiers (pf-m- classes) across the codebase. |
-| `pf-bug-triage` | Performs preliminary triage of opened issues marked as bugs. |
-| `pf-create-issue` | Create GitHub issues for PatternFly repositories with smart templates, follow-up tracking, and duplicate detection. |
-| `pf-org-version-update` | Updates the patternfly-org repo for a new PatternFly release or release candidate. |
+| `analytics-repo-pruning` | Flag archived or inactive repos in PatternFly Analytics repos.json for removal. |
+| `css-var-analyzer` | Analyze --pf- CSS custom property usage and naming patterns in PatternFly SCSS. |
+| `duplicate-epic` | Clone a Jira epic from another project into the PF Jira space with back-links and feature attachment. |
+| `pf-analyze-modifiers` | Analyze PatternFly modifier class (pf-m-*) usage across SCSS files and generate usage reports. |
+| `pf-bug-triage` | Triage PatternFly bug reports — assess completeness, suggest fixes, identify affected components, and recommend assignees. |
+| `pf-create-issue` | Create well-structured GitHub issues for PatternFly repositories with templates, follow-up tracking, and duplicate detection. |
+| `pf-org-version-update` | Update patternfly-org for a new PatternFly release — resolve versions, update package.json and versions.json, and provide build steps. |
 | `pf-tokens` | Build CSS design tokens for PatternFly core and copy them to the PatternFly repository. |
-| `quarterly-initiative-report` | Generate comprehensive quarterly Jira status reports with progress tracking, RAG assessment, blocker identification, cross-project duplicate link analysis, and Q+1 recommendations. |
+| `quarterly-initiative-report` | Generate quarterly Jira status reports with RAG assessment, blocker tracking, and next-quarter recommendations. |
 | `semantic-release-troubleshooting` | Diagnose and fix semantic-release issues when a specific version is not being released. |
-| `summarize-jira-issues` | Summarize Jira sprint issues and contributions for the current user. |
-| `write-example-description` | Helps PatternFly developers write and refine example descriptions and demo descriptions for PatternFly.org. |
+| `summarize-jira-issues` | Summarize your current sprint workload from Jira — assigned issues, contributor roles, and priorities. |
+| `write-example-description` | Write and refine example descriptions for PatternFly.org component and demo pages. |
 
 
 <br>
@@ -90,15 +90,15 @@ React component development — coding standards, testing, and structure
 
 | Skill | Description |
 |-------|-------------|
-| `pf-component-structure` | Guide for PatternFly React component structure — audits, correct nesting, and layout debugging. |
-| `pf-import-checker` | Audits and fixes PatternFly import paths, with emphasis on charts, chatbot, and component-groups. |
+| `pf-component-structure` | Audit PatternFly React component nesting, wrapper hierarchies, and layout structure. |
+| `pf-import-checker` | Audit and fix invalid PatternFly import paths across packages. |
 | `pf-project-scaffolder` | Scaffolds PatternFly React projects with PF6-safe dependencies, imports, and starter layout. |
-| `pf-prototype-mode` | Enable prototype mode for React apps (grayscale + banner) |
-| `pf-unit-test-generator` | Generate a comprehensive unit test file for a given React component. |
+| `pf-prototype-mode` | Enable prototype mode for React apps with grayscale styling and a banner overlay. |
+| `pf-unit-test-generator` | Generate a unit test file for a React component using Testing Library. |
 
 | Agent | Description |
 |-------|-------------|
 | `component-structure-audit` | PatternFly React structural composition rules — required hierarchies, wrapper components, and props-vs-children patterns. |
-| `pf-coding-standards` | PatternFly React development standards. |
-| `pf-unit-test-standards` | PatternFly React unit testing standards. |
+| `pf-coding-standards` | PatternFly React coding standards — import patterns, component composition, token usage, and style conventions. |
+| `pf-unit-test-standards` | PatternFly React unit testing standards — RTL patterns, mock boundaries, coverage expectations, and assertion style. |
 
