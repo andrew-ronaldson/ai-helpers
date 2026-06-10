@@ -30,6 +30,10 @@ See the [root README](../../README.md) for Cursor installation options.
 
 **Duplicate Epic** (`/pf-workshop:duplicate-epic`) — Duplicates a Jira epic with all its child issues.
 
+**Figma Changes** (`/pf-workshop:figma-changes`) — Diffs Figma designs to identify what changed and generate code update checklists.
+
+**Icon Finder** (`/pf-workshop:icon-finder`) — Finds Red Hat Design System icons (@rhds/icons) by keyword or use case with visual previews.
+
 **PF Analyze Modifiers** (`/pf-workshop:pf-analyze-modifiers`) — Finds, lists, and summarizes PatternFly component modifiers across SCSS files.
 
 **PF Bug Triage** (`/pf-workshop:pf-bug-triage`) — Performs preliminary triage of bug issues with fix suggestions and maintainer tagging.
@@ -40,11 +44,15 @@ See the [root README](../../README.md) for Cursor installation options.
 
 **PF Tokens** (`/pf-workshop:pf-tokens`) — Looks up and documents PatternFly design tokens.
 
+**Prototype Mode** (`/pf-workshop:prototype-mode`) — Enables prototype mode for React apps with grayscale styling and a banner overlay.
+
 **Quarterly Initiative Report** (`/pf-workshop:quarterly-initiative-report`) — Generates quarterly initiative reports from Jira data.
 
 **Semantic Release Troubleshooting** (`/pf-workshop:semantic-release-troubleshooting`) — Diagnoses semantic-release pipeline issues.
 
 **Summarize Jira Issues** (`/pf-workshop:summarize-jira-issues`) — Summarizes Jira issues for standup and status reporting.
+
+**Summarize PR Reviews** (`/pf-workshop:summarize-pr-reviews`) — Summarizes GitHub PR review threads into concise, actionable feedback.
 
 **Write Example Description** (`/pf-workshop:write-example-description`) — Writes descriptions for PatternFly.org component examples.
 
@@ -60,14 +68,18 @@ pf-workshop/
 │   ├── analytics-repo-pruning/
 │   ├── css-var-analyzer/
 │   ├── duplicate-epic/
+│   ├── figma-changes/
+│   ├── icon-finder/
 │   ├── pf-analyze-modifiers/
 │   ├── pf-bug-triage/
 │   ├── pf-create-issue/
 │   ├── pf-org-version-update/
 │   ├── pf-tokens/
+│   ├── prototype-mode/
 │   ├── quarterly-initiative-report/
 │   ├── semantic-release-troubleshooting/
 │   ├── summarize-jira-issues/
+│   ├── summarize-pr-reviews/
 │   └── write-example-description/
 └── README.md
 ```

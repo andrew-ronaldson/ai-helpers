@@ -40,8 +40,6 @@ Skills are tasks that produce a result.
 
 **PF Project Scaffolder** (`/react:pf-project-scaffolder`) — Scaffolds a new PatternFly React project with recommended structure.
 
-**PF Prototype Mode** (`/react:pf-prototype-mode`) — Rapid prototyping mode for quickly building PatternFly UI layouts.
-
 ### Agents
 
 Agents are domain knowledge the AI follows.
@@ -80,7 +78,6 @@ react/
 │   ├── pf-component-structure/
 │   ├── pf-import-checker/
 │   ├── pf-project-scaffolder/
-│   ├── pf-prototype-mode/
 │   └── pf-unit-test-generator/
 └── README.md
 ```

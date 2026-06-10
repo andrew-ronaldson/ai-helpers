@@ -20,16 +20,6 @@ For enhanced results, also install the [PatternFly MCP server](https://github.co
 
 See the [root README](../../README.md) for Cursor installation options.
 
-## What's Included
-
-This plugin is accepting contributions. Planned skills include:
-
-- Automated a11y audits with standard report output
-- WCAG conformance checking
-- Accessibility documentation scaffolding
-
-Browse `skills/` for available skills (invoked as `/a11y:<skill-name>`).
-
 ## Sources
 
 - [PatternFly.org](https://www.patternfly.org/)

@@ -24,11 +24,7 @@ See the [root README](../../README.md) for Cursor installation options.
 
 ### Skills
 
-**Figma Changes** (`/design-to-code:figma-changes`) — Detects and reports changes between Figma designs and their PatternFly implementations.
-
-**Figma Icon Finder** (`/design-to-code:figma-icon-finder`) — Identifies PatternFly icons from Figma design files.
-
-**Icon Finder** (`/design-to-code:icon-finder`) — Finds the right PatternFly icon by description or use case.
+**PF Figma Icon Finder** (`/design-to-code:pf-figma-icon-finder`) — Identifies PatternFly icons from Figma design files.
 
 **PF AI Experience Patterns** (`/design-to-code:pf-ai-experience-patterns`) — Guides AI-related UI patterns following PatternFly design conventions.
 
@@ -49,12 +45,10 @@ design-to-code/
 ├── .cursor-plugin/
 │   └── plugin.json
 ├── skills/
-│   ├── figma-changes/
-│   ├── figma-icon-finder/
-│   ├── icon-finder/
 │   ├── pf-ai-experience-patterns/
 │   ├── pf-compliance-checker/
 │   ├── pf-design-mode/
+│   ├── pf-figma-icon-finder/
 │   ├── pf-raw-colors-scan/
 │   └── pf-token-auditor/
 └── README.md

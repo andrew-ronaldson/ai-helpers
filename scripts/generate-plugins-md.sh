@@ -72,6 +72,7 @@ HEADER
 
   # Build TOC
   for plugin_dir in plugins/*/; do
+    [ -f "${plugin_dir}.claude-plugin/plugin.json" ] || continue
     plugin=$(basename "$plugin_dir")
     desc=$(get_plugin_desc "$plugin_dir")
     echo "- [${plugin}](#${plugin}) — ${desc}"
@@ -84,6 +85,7 @@ HEADER
   # Build per-plugin sections
   first_plugin=true
   for plugin_dir in plugins/*/; do
+    [ -f "${plugin_dir}.claude-plugin/plugin.json" ] || continue
     plugin=$(basename "$plugin_dir")
     desc=$(get_plugin_desc "$plugin_dir")
 
@@ -159,6 +161,7 @@ if [ -f "$README" ]; then
       echo "| Plugin | Description |" >> "$TMPFILE"
       echo "|--------|-------------|" >> "$TMPFILE"
       for plugin_dir in plugins/*/; do
+        [ -f "${plugin_dir}.claude-plugin/plugin.json" ] || continue
         plugin=$(basename "$plugin_dir")
         desc=$(get_plugin_desc "$plugin_dir")
         echo "| **${plugin}** | ${desc} |" >> "$TMPFILE"
