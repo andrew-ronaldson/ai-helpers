@@ -33,7 +33,8 @@ Cursor can discover plugins from `.cursor-plugin/` directories. If you also have
 |--------|-------------|
 | **a11y** | Accessibility auditing, reporting, and documentation |
 | **code-review** | Code review and quality — adversarial review, security patterns |
-| **design-to-code** | Design-to-code translation — Figma review, token auditing, icon identification, design compliance |
+| **design-audit** | Design audit — validate existing code and designs against PatternFly standards |
+| **design-guide** | Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation |
 | **migration** | PF version migration — breaking change detection, class scanning, upgrade planning |
 | **pf-workshop** | PatternFly team tools and skill incubation — issue triage, release management, codebase auditing, new skill development |
 | **react** | React component development — coding standards, testing, and structure |

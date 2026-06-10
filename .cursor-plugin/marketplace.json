@@ -15,9 +15,14 @@
       "description": "PF version migration — breaking change detection, class scanning, upgrade planning"
     },
     {
-      "name": "design-to-code",
-      "source": "./plugins/design-to-code",
-      "description": "Design-to-code translation — Figma review, token auditing, icon identification, design compliance"
+      "name": "design-audit",
+      "source": "./plugins/design-audit",
+      "description": "Design audit — validate existing code and designs against PatternFly standards"
+    },
+    {
+      "name": "design-guide",
+      "source": "./plugins/design-guide",
+      "description": "Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation"
     },
     {
       "name": "a11y",

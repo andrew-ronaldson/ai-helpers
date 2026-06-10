@@ -6,7 +6,8 @@ Quick reference of all plugins and what they contain. This file is auto-generate
 
 - [a11y](#a11y) — Accessibility auditing, reporting, and documentation
 - [code-review](#code-review) — Code review and quality — adversarial review, security patterns
-- [design-to-code](#design-to-code) — Design-to-code translation — Figma review, token auditing, icon identification, design compliance
+- [design-audit](#design-audit) — Design audit — validate existing code and designs against PatternFly standards
+- [design-guide](#design-guide) — Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation
 - [migration](#migration) — PF version migration — breaking change detection, class scanning, upgrade planning
 - [pf-workshop](#pf-workshop) — PatternFly team tools and skill incubation — issue triage, release management, codebase auditing, new skill development
 - [react](#react) — React component development — coding standards, testing, and structure
@@ -31,18 +32,28 @@ No skills or agents yet.
 
 <br>
 
-### design-to-code
+### design-audit
 
-Design-to-code translation — Figma review, token auditing, icon identification, design compliance
+Design audit — validate existing code and designs against PatternFly standards
+
+| Skill | Description |
+|-------|-------------|
+| `pf-compliance-checker` | Check Figma designs against PatternFly v6 standards for colors, typography, spacing, and component usage. |
+| `pf-figma-icon-finder` | Identify PatternFly icons in Figma mockups and provide the correct React import statements. |
+| `pf-raw-colors-scan` | Find raw color values (hex, rgb, hsl) in code and suggest PatternFly design token replacements. |
+| `pf-token-auditor` | Audit designs against the PatternFly 6 token architecture and bridge Figma styles to PF semantic tokens. |
+
+
+<br>
+
+### design-guide
+
+Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation
 
 | Skill | Description |
 |-------|-------------|
 | `pf-ai-experience-patterns` | Apply Red Hat's AI design language to AI-powered features — chatbots, assistants, generation UIs. |
-| `pf-compliance-checker` | Check Figma designs against PatternFly v6 standards for colors, typography, spacing, and component usage. |
 | `pf-design-mode` | Create and edit Figma design files using PatternFly-approved component libraries. |
-| `pf-figma-icon-finder` | Identify PatternFly icons in Figma mockups and provide the correct React import statements. |
-| `pf-raw-colors-scan` | Find raw color values (hex, rgb, hsl) in code and suggest PatternFly design token replacements. |
-| `pf-token-auditor` | Audit designs against the PatternFly 6 token architecture and bridge Figma styles to PF semantic tokens. |
 
 
 <br>
