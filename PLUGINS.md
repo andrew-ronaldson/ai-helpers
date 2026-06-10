@@ -17,7 +17,7 @@ Quick reference of all plugins and what they contain. This file is auto-generate
 
 Accessibility auditing, reporting, and documentation
 
-No skills or agents yet — contributions welcome!
+No skills or agents yet.
 
 
 <br>
@@ -26,7 +26,7 @@ No skills or agents yet — contributions welcome!
 
 Code review and quality — PR summaries, adversarial review, security patterns
 
-No skills or agents yet — contributions welcome!
+No skills or agents yet.
 
 
 <br>

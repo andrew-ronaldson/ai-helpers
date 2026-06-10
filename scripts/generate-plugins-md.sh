@@ -140,7 +140,7 @@ HEADER
     fi
 
     if [ "$has_skills" = false ] && [ "$has_agents" = false ]; then
-      echo "No skills or agents yet — contributions welcome!"
+      echo "No skills or agents yet."
     fi
 
     echo ""
