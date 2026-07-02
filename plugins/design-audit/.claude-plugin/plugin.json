@@ -9,6 +9,7 @@
     { "name": "PatternFly Design Tokens", "url": "https://www.patternfly.org/tokens/all-patternfly-tokens" },
     { "name": "Figma", "url": "https://www.figma.com/" }
   ],
+  "dependencies": ["patternfly-mcp"],
   "version": "1.0.0",
   "author": {
     "name": "PatternFly Team",

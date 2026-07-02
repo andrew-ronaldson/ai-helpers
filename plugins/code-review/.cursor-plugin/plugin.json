@@ -6,6 +6,7 @@
   "sources": [
     { "name": "PatternFly.org", "url": "https://www.patternfly.org/" }
   ],
+  "dependencies": ["patternfly-mcp"],
   "version": "1.0.0",
   "author": {
     "name": "PatternFly Team",

@@ -8,6 +8,7 @@
     { "name": "PatternFly React GitHub", "url": "https://github.com/patternfly/patternfly-react" },
     { "name": "React Testing Library", "url": "https://testing-library.com/docs/react-testing-library/intro" }
   ],
+  "dependencies": ["patternfly-mcp"],
   "version": "1.0.0",
   "author": {
     "name": "PatternFly Team",

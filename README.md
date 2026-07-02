@@ -21,7 +21,7 @@ Plugins work in both **Claude Code** and **Cursor**. The content is identical �
 /plugin install react@ai-helpers
 ```
 
-After installation, the plugin's agents and skills are available in any project.
+After installation, the plugin's agents and skills are available in any project. To receive plugin updates automatically, enable auto-update for this marketplace: `/plugin` → **Marketplaces** → select **patternfly-ai-helpers** → **Enable auto-update**.
 
 <details>
 <summary>See it in action</summary>
@@ -79,9 +79,9 @@ Red Hat Cursor Enterprise users have access to the PatternFly AI Helpers team ma
 
 See [PLUGINS.md](PLUGINS.md) for skills, agents, and usage details.
 
-## PatternFly MCP Server (Recommended)
+## PatternFly MCP Server (Included)
 
-For the best experience, also install the [PatternFly MCP server](https://github.com/patternfly/patternfly-mcp) which gives AI tools access to component documentation, prop schemas, and design guidelines. Skills and agents work without it but provide enhanced results when it's available.
+The [PatternFly MCP server](https://github.com/patternfly/patternfly-mcp) gives AI tools access to component documentation, prop schemas, and design guidelines. It is **automatically installed** as a dependency when you install any plugin from this marketplace — no separate setup required.
 
 ## Documentation
 

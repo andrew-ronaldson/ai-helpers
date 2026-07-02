@@ -5,6 +5,11 @@
   },
   "plugins": [
     {
+      "name": "patternfly-mcp",
+      "source": "./plugins/patternfly-mcp",
+      "description": "PatternFly MCP server — component documentation, design token lookup, and accessibility guidance"
+    },
+    {
       "name": "react",
       "source": "./plugins/react",
       "description": "React component development — coding standards, testing, and structure"
