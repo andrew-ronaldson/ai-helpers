@@ -5,8 +5,8 @@ Detect hardcoded CSS values (colors, spacing, typography, shadows, border radius
 ## Documentation
 
 - **[SKILL.md](SKILL.md)** - Complete skill instructions, scanning logic, and token hierarchy
-- **[reference/comparison.md](reference/comparison.md)** - Comparison with pf-raw-colors-scan
-- **[reference/example-violations.md](reference/example-violations.md)** - Example violations and token replacement patterns
+- **[references/comparison.md](references/comparison.md)** - Comparison with pf-raw-colors-scan
+- **[references/example-violations.md](references/example-violations.md)** - Example violations and token replacement patterns
 
 ## Quick Start
 
