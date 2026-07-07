@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/patternfly/ai-helpers)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Plugins](https://img.shields.io/badge/plugins-8-blueviolet)](./PLUGINS.md)
-[![Skills](https://img.shields.io/badge/skills-28-blue)](./PLUGINS.md)
+[![Skills](https://img.shields.io/badge/skills-31-blue)](./PLUGINS.md)
 
 AI coding helpers for [PatternFly](https://www.patternfly.org/) development. This repository provides plugins and documentation to help AI tools generate accurate, best-practice PatternFly applications.
 
@@ -21,47 +21,11 @@ Plugins work in both **Claude Code** and **Cursor**. The content is identical �
 /plugin install react@ai-helpers
 ```
 
-After installation, the plugin's agents and skills are available in any project. To receive plugin updates automatically, enable auto-update for this marketplace: `/plugin` → **Marketplaces** → select **patternfly-ai-helpers** → **Enable auto-update**.
-
-<details>
-<summary>See it in action</summary>
-
-![Installing the PatternFly AI Helpers marketplace and using a skill in Claude Code](assets/claudecode-install-demo.gif)
-
-</details>
+After installation, the plugin's agents and skills are available in any project.
 
 ### Cursor
 
-#### Third-Party Plugin Import
-
-If you've already installed plugins via Claude Code, Cursor can discover them automatically:
-
-1. Open **Cursor Settings** → **Rules, Skills, Subagents**
-2. Enable **"Include third-party Plugins, Skills, and other configs"**
-
-Plugins installed via Claude Code appear immediately — no cloning or manual setup required.
-
-<details>
-<summary>See it in action</summary>
-
-![Importing third-party plugins in Cursor and using a skill](assets/cursor-plugin-import-demo.gif)
-
-</details>
-
-#### Team Marketplace (Red Hat)
-
-Red Hat Cursor Enterprise users have access to the PatternFly AI Helpers team marketplace:
-
-1. Open **Cursor Settings** → **Plugins** → **Browse Marketplace**
-2. Select **PatternFly AI Helpers**
-3. Click **Get** on the plugins you need
-
-<details>
-<summary>See it in action</summary>
-
-![Installing the react plugin from the PatternFly AI Helpers team marketplace in Cursor](assets/cursor-marketplace-install-demo.gif)
-
-</details>
+Cursor can discover plugins from `.cursor-plugin/` directories. If you also have Claude Code installed, Cursor may pick up installed plugins automatically via its third-party plugin settings.
 
 ## Available Plugins
 
@@ -69,20 +33,55 @@ Red Hat Cursor Enterprise users have access to the PatternFly AI Helpers team ma
 | Plugin | Description |
 |--------|-------------|
 | **a11y** | Accessibility auditing, reporting, and documentation |
-| **code-#8209;review** | Code review and quality — adversarial review, security patterns |
-| **design-#8209;audit** | Design audit — validate existing code and designs against PatternFly standards |
-| **design-#8209;guide** | Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation |
+| **code&#8209;review** | Code review and quality — adversarial review, security patterns |
+| **design&#8209;audit** | Design audit — validate existing code and designs against PatternFly standards |
+| **design&#8209;guide** | Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation |
 | **migration** | PF version migration — breaking change detection, class scanning, upgrade planning |
-| **patternfly-#8209;mcp** | PatternFly MCP server — provides component documentation, design token lookup, and accessibility guidance via the Model Context Protocol |
-| **pf-#8209;workshop** | PatternFly team tools and skill incubation — issue triage, release management, codebase auditing, new skill development |
+| **patternfly&#8209;mcp** | PatternFly MCP server — provides component documentation, design token lookup, and accessibility guidance via the Model Context Protocol |
+| **pf&#8209;workshop** | PatternFly team tools and skill incubation — issue triage, release management, codebase auditing, new skill development |
 | **react** | React component development — coding standards, testing, and structure |
 <!-- END PLUGIN TABLE -->
 
 See [PLUGINS.md](PLUGINS.md) for skills, agents, and usage details.
 
-## PatternFly MCP Server (Included)
+## PatternFly MCP Server (Recommended)
 
-The [PatternFly MCP server](https://github.com/patternfly/patternfly-mcp) gives AI tools access to component documentation, prop schemas, and design guidelines. It is **automatically installed** as a dependency when you install any plugin from this marketplace — no separate setup required.
+For the best experience, also install the [PatternFly MCP server](https://github.com/patternfly/patternfly-mcp) which gives AI tools access to component documentation, prop schemas, and design guidelines. Skills and agents work without it but provide enhanced results when it's available.
+
+## Architecture
+
+```mermaid
+graph TD
+    A[AI Tool] -->|discovers| B[".<tool>-plugin/marketplace.json"]
+    B -->|references| C[plugins/react]
+    B -->|references| D[plugins/design-to-code]
+    B -->|references| E[plugins/...]
+    C --- F[skills/ + agents/]
+    D --- G[skills/ + agents/]
+    E --- H[skills/ + agents/]
+```
+
+### How it works
+
+1. Each AI tool looks for its own directory (`.claude-plugin/`, `.cursor-plugin/`) to find `marketplace.json`
+2. The marketplace lists plugins with relative paths to `plugins/<name>/`
+3. Each plugin has identical manifests in `.claude-plugin/plugin.json` and `.cursor-plugin/plugin.json`
+4. Adding support for a new tool = copying the manifest into a new `.<tool>-plugin/` directory
+
+## Repository Structure
+
+```
+ai-helpers/
+├── .claude-plugin/       # Claude Code marketplace config
+├── .cursor-plugin/       # Cursor marketplace config
+├── plugins/
+│   └── <plugin-name>/    # One directory per plugin
+│       ├── .claude-plugin/
+│       ├── .cursor-plugin/
+│       ├── skills/
+│       └── agents/
+└── docs/                 # AI-friendly PatternFly documentation
+```
 
 ## Documentation
 
