@@ -10,11 +10,11 @@ Use this plugin when you're **checking** whether existing code or designs follow
 
 ### Skills
 
-- **PF Compliance Checker** (`/design-audit:pf-compliance-checker`) — Check Figma designs against PatternFly v6 standards for colors, typography, spacing, and component usage.
-- **PF Design Token Check** (`/design-audit:pf-design-token-check`) — Detect hardcoded color, spacing, typography, border radius and shadow values that have PF token equivalents and suggest the correct design token replacements.
-- **PF Figma Icon Finder** (`/design-audit:pf-figma-icon-finder`) — Identify PatternFly icons in Figma mockups and provide the correct React import statements.
-- **PF Raw Colors Scan** (`/design-audit:pf-raw-colors-scan`) — Find raw color values (hex, rgb, hsl) in code and suggest PatternFly design token replacements.
-- **PF Token Auditor** (`/design-audit:pf-token-auditor`) — Audit designs against the PatternFly 6 token architecture and bridge Figma styles to PF semantic tokens.
+- **PF Code Token Check** (`/design-audit:pf-code-token-check`) — Detect hardcoded color, spacing, typography, border radius and shadow values that have PF token equivalents and suggest the correct design token replacements.
+- **PF Color Scan** (`/design-audit:pf-color-scan`) — Find raw color values (hex, rgb, hsl) in code and suggest PatternFly design token replacements.
+- **PF Figma Check** (`/design-audit:pf-figma-check`) — Check Figma designs against PatternFly v6 standards for colors, typography, spacing, and component usage.
+- **PF Figma Token Check** (`/design-audit:pf-figma-token-check`) — Audit designs against the PatternFly 6 token architecture and bridge Figma styles to PF semantic tokens.
+- **PF Icon Finder** (`/design-audit:pf-icon-finder`) — Identify PatternFly icons in Figma mockups and provide the correct React import statements.
 
 ## Sources
 

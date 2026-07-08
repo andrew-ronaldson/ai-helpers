@@ -10,8 +10,8 @@ Use this plugin when you're **building** something and need help choosing the ri
 
 ### Skills
 
-- **PF AI Experience Patterns** (`/design-guide:pf-ai-experience-patterns`) — Apply Red Hat's AI design language to AI-powered features — chatbots, assistants, generation UIs.
-- **PF Design Mode** (`/design-guide:pf-design-mode`) — Create and edit Figma design files using PatternFly-approved component libraries.
+- **PF AI Guide** (`/design-guide:pf-ai-guide`) — Apply Red Hat's AI design language to AI-powered features — chatbots, assistants, generation UIs.
+- **PF Figma Design Mode** (`/design-guide:pf-figma-design-mode`) — Create and edit Figma design files using PatternFly-approved component libraries.
 
 ### Agents
 

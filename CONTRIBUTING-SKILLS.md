@@ -65,12 +65,12 @@ Every skill or agent must live in a plugin. Pick the one that matches your skill
 |--------|---------------------|---------------|----------------|
 | **a11y** | Audit and document accessibility | Does this help me make my UI accessible? |  |
 | **code-review** | Review code for quality | Does this help me review code for quality? |  |
-| **design-audit** | Validate existing code/designs against PF standards | Does this check whether existing code or designs follow PF standards? | `pf-compliance-checker`, `pf-design-token-check`, `pf-figma-icon-finder` |
-| **design-guide** | Choose the right PF components and patterns when building | Does this help me choose the right PF components and patterns when building? | `pf-ai-experience-patterns`, `pf-design-mode` |
-| **migration** | Upgrade PatternFly versions | Does this help me upgrade PF versions? | `pf-class-migration-scanner`, `pf-react-breaking-changes` |
+| **design-audit** | Validate existing code/designs against PF standards | Does this check whether existing code or designs follow PF standards? | `pf-code-token-check`, `pf-color-scan`, `pf-figma-check` |
+| **design-guide** | Choose the right PF components and patterns when building | Does this help me choose the right PF components and patterns when building? | `pf-ai-guide`, `pf-figma-design-mode` |
+| **migration** | Upgrade PatternFly versions | Does this help me upgrade PF versions? | `pf-css-migration-scan`, `pf-react-migration-scan` |
 | **patternfly-mcp** | Connect AI tools to PatternFly documentation and component data |  |  |
-| **pf-workshop** | Team tools and skill incubation | Is this a team workflow tool, or a new skill that isn't ready for a consumer plugin yet? | `analytics-repo-pruning`, `css-var-analyzer`, `duplicate-epic` |
-| **react** | Develop and test React components | Does this help me write or test a React component? | `pf-component-structure`, `pf-design-comments`, `pf-github-pages-deploy` |
+| **pf-workshop** | Team tools and skill incubation | Is this a team workflow tool, or a new skill that isn't ready for a consumer plugin yet? | `analytics-repo-pruning`, `duplicate-epic`, `figma-diff` |
+| **react** | Develop and test React components | Does this help me write or test a React component? | `pf-component-check`, `pf-deploy`, `pf-design-comments-setup` |
 <!-- END PLUGIN TABLE -->
 
 **How to decide:**
@@ -107,7 +107,7 @@ When proposing a new plugin, ask: *"If someone sees this name in a list, do they
 
 **Litmus test:** Can someone use the result? Skill. Is it knowledge the AI should always follow? Agent. When in doubt, write a skill.
 
-**They work together:** An agent's knowledge is loaded automatically when the AI detects relevant context. So if you invoke a skill like `pf-unit-test-generator`, the `pf-coding-standards` agent's knowledge is also active — the agent makes the skill's output better.
+**They work together:** An agent's knowledge is loaded automatically when the AI detects relevant context. So if you invoke a skill like `pf-test-gen`, the `pf-coding-standards` agent's knowledge is also active — the agent makes the skill's output better.
 
 ## Naming convention
 
@@ -115,17 +115,17 @@ Skills in consumer plugins use the `pf-` prefix and are PatternFly-specific. Gen
 
 | Type | PatternFly-specific? | Plugin | Name |
 |------|---------------------|--------|------|
-| Skill | Yes — generates PF component tests | `react` | `pf-unit-test-generator` |
-| Skill | Yes — PF design token auditing | `design-audit` | `pf-token-auditor` |
+| Skill | Yes — generates PF component tests | `react` | `pf-test-gen` |
+| Skill | Yes — PF design token auditing | `design-audit` | `pf-figma-token-check` |
 | Skill | No — summarizes PR review threads | `pf-workshop` | `summarize-pr-reviews` |
 | Agent | Yes — PF React coding standards | `react` | `pf-coding-standards` |
 
-**Why this matters:** Consumer plugins are polished offerings for PF consumers. Keeping generic tools separate preserves that signal. In Cursor, slash commands appear in a flat list without plugin context — the `pf-` prefix ensures discoverability. In Claude Code, skills show the plugin namespace (`/react:pf-unit-test-generator`), but the prefix is still valuable for cross-tool consistency.
+**Why this matters:** Consumer plugins are polished offerings for PF consumers. Keeping generic tools separate preserves that signal. In Cursor, slash commands appear in a flat list without plugin context — the `pf-` prefix ensures discoverability. In Claude Code, skills show the plugin namespace (`/react:pf-test-gen`), but the prefix is still valuable for cross-tool consistency.
 
 PF-specific skills that serve internal team workflows also use the `pf-` prefix but live in `pf-workshop` because they aren't consumer-facing (e.g., `pf-bug-triage`, `pf-create-issue`).
 
 **The directory name, file name, and frontmatter `name` must all match.** A mismatch causes confusing behavior when invoking the skill.
-- Skill directory: `skills/pf-unit-test-generator/SKILL.md` with `name: pf-unit-test-generator`
+- Skill directory: `skills/pf-test-gen/SKILL.md` with `name: pf-test-gen`
 - Agent file: `agents/pf-coding-standards.md` with `name: pf-coding-standards`
 
 ## Writing descriptions
@@ -242,7 +242,7 @@ Evals are **expected** for consumer-facing skills. A skill graduating from `pf-w
 
 Write test cases that target what the skill **uniquely contributes** — don't test things the base model already knows without the skill loaded. See the [eval spike findings](https://docs.google.com/document/d/1Grgz-nbqVVZk0QzwzPb0Rk8m40kzvnAJjE4OD_zxlTk) for rationale on discriminating vs non-discriminating test cases.
 
-Evals use [agent-eval-harness](https://github.com/opendatahub-io/agent-eval-harness) and live in `eval/<skill-name>/eval.yaml` (not in the skill directory). See `eval/pf-unit-test-generator/eval.yaml` for a working example. To run evals locally, install the harness plugin:
+Evals use [agent-eval-harness](https://github.com/opendatahub-io/agent-eval-harness) and live in `eval/<skill-name>/eval.yaml` (not in the skill directory). See `eval/pf-test-gen/eval.yaml` for a working example. To run evals locally, install the harness plugin:
 
 ```bash
 claude plugin install agent-eval-harness@agent-eval-harness-dev

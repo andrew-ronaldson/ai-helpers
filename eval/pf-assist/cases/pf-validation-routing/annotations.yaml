@@ -1,6 +1,6 @@
 expected_routing:
-  - pf-raw-colors-scan
-  - pf-compliance-checker
-  - pf-import-checker
-  - pf-token-auditor
-  - pf-component-structure
+  - pf-color-scan
+  - pf-figma-check
+  - pf-import-check
+  - pf-figma-token-check
+  - pf-component-check

@@ -8,12 +8,12 @@ React component development — coding standards, testing, and structure.
 
 ### Skills
 
-- **PF Component Structure** (`/react:pf-component-structure`) — Audit PatternFly React component nesting, wrapper hierarchies, and layout structure.
-- **PF Design Comments** (`/react:pf-design-comments`) — Integrate @patternfly/design-comments into React apps for on-page design feedback, pinned comment threads, GitHub Issues sync, and Jira linking.
-- **PF Github Pages Deploy** (`/react:pf-github-pages-deploy`) — Deploy a PatternFly React project to GitHub Pages using pfcli deploy.
-- **PF Import Checker** (`/react:pf-import-checker`) — Audit and fix invalid PatternFly import paths across packages.
-- **PF Project Scaffolder** (`/react:pf-project-scaffolder`) — Scaffolds PatternFly React projects with PF6-safe dependencies, imports, and starter layout.
-- **PF Unit Test Generator** (`/react:pf-unit-test-generator`) — Generate a unit test file for a React component using Testing Library.
+- **PF Component Check** (`/react:pf-component-check`) — Audit PatternFly React component nesting, wrapper hierarchies, and layout structure.
+- **PF Deploy** (`/react:pf-deploy`) — Deploy a PatternFly React project to GitHub Pages using pfcli deploy.
+- **PF Design Comments Setup** (`/react:pf-design-comments-setup`) — Integrate @patternfly/design-comments into React apps for on-page design feedback, pinned comment threads, GitHub Issues sync, and Jira linking.
+- **PF Import Check** (`/react:pf-import-check`) — Audit and fix invalid PatternFly import paths across packages.
+- **PF Project Gen** (`/react:pf-project-gen`) — Scaffolds PatternFly React projects with PF6-safe dependencies, imports, and starter layout.
+- **PF Test Gen** (`/react:pf-test-gen`) — Generate a unit test file for a React component using Testing Library.
 
 ### Agents
 

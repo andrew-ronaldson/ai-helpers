@@ -9,19 +9,19 @@ PatternFly team tools and skill incubation — issue triage, release management,
 ### Skills
 
 - **Analytics Repo Pruning** (`/pf-workshop:analytics-repo-pruning`) — Flag archived or inactive repos in PatternFly Analytics repos.json for removal.
-- **CSS Var Analyzer** (`/pf-workshop:css-var-analyzer`) — Analyze --pf- CSS custom property usage and naming patterns in PatternFly SCSS.
 - **Duplicate Epic** (`/pf-workshop:duplicate-epic`) — Clone a Jira epic from another project into the PF Jira space with back-links and feature attachment.
-- **Figma Changes** (`/pf-workshop:figma-changes`) — Diff Figma designs to identify what changed and generate code update checklists.
+- **Figma Diff** (`/pf-workshop:figma-diff`) — Diff Figma designs to identify what changed and generate code update checklists.
 - **Icon Finder** (`/pf-workshop:icon-finder`) — Find Red Hat Design System icons (@rhds/icons) by keyword or use case with visual previews.
-- **PF Analyze Modifiers** (`/pf-workshop:pf-analyze-modifiers`) — Analyze PatternFly modifier class (pf-m-*) usage across SCSS files and generate usage reports.
 - **PF Bug Triage** (`/pf-workshop:pf-bug-triage`) — Triage PatternFly bug reports — assess completeness, suggest fixes, identify affected components, and recommend assignees.
 - **PF Content Review** (`/pf-workshop:pf-content-review`) — Review content against PatternFly and Red Hat voice and tone standards.
 - **PF Create Issue** (`/pf-workshop:pf-create-issue`) — Create well-structured GitHub issues for PatternFly repositories with templates, follow-up tracking, and duplicate detection.
+- **PF CSS Var Scan** (`/pf-workshop:pf-css-var-scan`) — Analyze --pf- CSS custom property usage and naming patterns in PatternFly SCSS.
+- **PF Modifier Scan** (`/pf-workshop:pf-modifier-scan`) — Analyze PatternFly modifier class (pf-m-*) usage across SCSS files and generate usage reports.
 - **PF Org Version Update** (`/pf-workshop:pf-org-version-update`) — Update patternfly-org for a new PatternFly release — resolve versions, update package.json and versions.json, and provide build steps.
-- **PF Tokens** (`/pf-workshop:pf-tokens`) — Build CSS design tokens for PatternFly core and copy them to the PatternFly repository.
+- **PF Token Build** (`/pf-workshop:pf-token-build`) — Build CSS design tokens for PatternFly core and copy them to the PatternFly repository.
 - **Prototype Mode** (`/pf-workshop:prototype-mode`) — Enable prototype mode for React apps with grayscale styling and a banner overlay.
-- **Quarterly Initiative Report** (`/pf-workshop:quarterly-initiative-report`) — Generate quarterly Jira status reports with RAG assessment, blocker tracking, and next-quarter recommendations.
-- **Semantic Release Troubleshooting** (`/pf-workshop:semantic-release-troubleshooting`) — Diagnose and fix semantic-release issues when a specific version is not being released.
+- **Quarterly Report Gen** (`/pf-workshop:quarterly-report-gen`) — Generate quarterly Jira status reports with RAG assessment, blocker tracking, and next-quarter recommendations.
+- **Semantic Release Debug** (`/pf-workshop:semantic-release-debug`) — Diagnose and fix semantic-release issues when a specific version is not being released.
 - **Summarize Jira Issues** (`/pf-workshop:summarize-jira-issues`) — Summarize your current sprint workload from Jira — assigned issues, contributor roles, and priorities.
 - **Summarize PR Reviews** (`/pf-workshop:summarize-pr-reviews`) — Summarize GitHub pull requests awaiting your review with status, age, and priority.
 - **Write Example Description** (`/pf-workshop:write-example-description`) — Write and refine example descriptions for PatternFly.org component and demo pages.
