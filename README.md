@@ -33,21 +33,12 @@ Cursor can discover plugins from `.cursor-plugin/` directories. If you also have
 | Plugin | Description |
 |--------|-------------|
 | **a11y** | Accessibility auditing, reporting, and documentation |
-<<<<<<< Updated upstream
-| **code-#8209;review** | Code review and quality — adversarial review, security patterns |
-| **design-#8209;audit** | Design audit — validate existing code and designs against PatternFly standards |
-| **design-#8209;guide** | Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation |
-| **migration** | PF version migration — breaking change detection, class scanning, upgrade planning |
-| **patternfly-#8209;mcp** | PatternFly MCP server — provides component documentation, design token lookup, and accessibility guidance via the Model Context Protocol |
-| **pf-#8209;workshop** | PatternFly team tools and skill incubation — issue triage, release management, codebase auditing, new skill development |
-=======
 | **code-review** | Code review and quality — adversarial review, security patterns |
 | **design-audit** | Design audit — validate existing code and designs against PatternFly standards |
 | **design-guide** | Design guide — component selection, interaction patterns, AI experience patterns, Figma design creation |
 | **migration** | PF version migration — breaking change detection, class scanning, upgrade planning |
 | **patternfly-mcp** | PatternFly MCP server — provides component documentation, design token lookup, and accessibility guidance via the Model Context Protocol |
 | **pf-workshop** | PatternFly team tools and skill incubation — issue triage, release management, codebase auditing, new skill development |
->>>>>>> Stashed changes
 | **react** | React component development — coding standards, testing, and structure |
 <!-- END PLUGIN TABLE -->
 
